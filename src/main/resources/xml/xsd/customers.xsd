@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsd:schema xmlns:c="http://example.com/customers" xmlns:l="http://example.com/launchpads" elementFormDefault="qualified" targetNamespace="http://example.com/customers" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <xsd:import schemaLocation="launchpads.xsd" namespace="http://example.com/launchpads" />
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="launchpads.xsd"/>
   <xsd:element name="customers">
     <xsd:complexType>
       <xsd:sequence>
-        <xsd:element ref="c:customer" maxOccurs="unbounded" minOccurs="0"/>
+        <xsd:element ref="customer" maxOccurs="unbounded" minOccurs="0"/>
       </xsd:sequence>
     </xsd:complexType>
   </xsd:element>
   <xsd:element name="customer">
     <xsd:complexType>
       <xsd:sequence>
-        <xsd:group ref="c:customer_group" />
+        <xsd:group ref="customer_group" />
       </xsd:sequence>
-      <xsd:attribute name="customer_id" use="required" type="c:customer_pattern"/>
+      <xsd:attribute name="customer_id" use="required" type="customer_pattern"/>
     </xsd:complexType>
   </xsd:element>
   <xsd:element name="contact_info">
@@ -21,7 +21,7 @@
       <xsd:sequence>
         <xsd:element name="phone_number"/>
       </xsd:sequence>
-      <xsd:attribute name="location_ref" use="required" type="l:location_pattern"/>
+      <xsd:attribute name="location_ref" use="required" type="location_pattern"/>
     </xsd:complexType>
   </xsd:element>
   <xsd:element name="phone_number">
@@ -34,7 +34,7 @@
   <xsd:group name="customer_group">
     <xsd:sequence>
       <xsd:element name="name" type="xsd:string" />
-      <xsd:element ref="c:contact_info"/>
+      <xsd:element ref="contact_info"/>
     </xsd:sequence>
   </xsd:group>
   <xsd:simpleType name="customer_pattern">

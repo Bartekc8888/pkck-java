@@ -1,10 +1,12 @@
 package com.politechnika.pkckbinding.tool;
 
 import javax.annotation.PostConstruct;
+import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
 import java.io.File;
 import java.io.IOException;
 
@@ -17,6 +19,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
+import org.xml.sax.SAXException;
 
 @Slf4j
 @Component
@@ -41,9 +44,10 @@ public class XmlConverter {
             JAXBContext context = JAXBContext.newInstance(FlightSchedule.class);
 
             Unmarshaller unmarshaller = context.createUnmarshaller();
-            Resource xmlResource = resourceLoader.getResource("classpath:" + xmlFilePath);
-            File xml = xmlResource.getFile();
+            File xml = loadFileFromResource(xmlFilePath);
 
+            Schema schema = loadSchema();
+            unmarshaller.setSchema(schema);
             unmarshaller.setEventHandler(new javax.xml.bind.helpers.DefaultValidationEventHandler());
             return (FlightSchedule) unmarshaller.unmarshal(xml);
         } catch (Exception e) {
@@ -63,10 +67,24 @@ public class XmlConverter {
                 xml.createNewFile();
             }
 
+            Schema schema = loadSchema();
+            marshaller.setSchema(schema);
             marshaller.setEventHandler(new javax.xml.bind.helpers.DefaultValidationEventHandler());
             marshaller.marshal(flightSchedule, xml);
         } catch (Exception e) {
             throw new XmlSavingException("Saving xml file failed!", e);
         }
+    }
+
+    private Schema loadSchema() throws SAXException, IOException {
+        File xml = loadFileFromResource(xmlSchemaPath);
+
+        SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        return sf.newSchema(xml);
+    }
+
+    private File loadFileFromResource(String filePath) throws IOException {
+        Resource xmlResource = resourceLoader.getResource("classpath:" + filePath);
+        return xmlResource.getFile();
     }
 }

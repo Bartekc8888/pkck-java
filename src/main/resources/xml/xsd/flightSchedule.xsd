@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsd:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:l="http://example.com/launchpads" xmlns:c="http://example.com/customers" xmlns:r="http://example.com/rockets" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <xsd:import schemaLocation="launchpads.xsd" namespace="http://example.com/launchpads" />
-  <xsd:import schemaLocation="customers.xsd" namespace="http://example.com/customers" />
-  <xsd:import schemaLocation="rockets.xsd" namespace="http://example.com/rockets" />
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="launchpads.xsd"/>
+  <xsd:include schemaLocation="customers.xsd"/>
+  <xsd:include schemaLocation="rockets.xsd"/>
   <xsd:element name="flight_schedule">
     <xsd:complexType>
       <xsd:sequence>
-        <xsd:element ref="authors"  maxOccurs="1" minOccurs="1"/>
+        <xsd:element ref="authors"/>
         <xsd:element name="description" type="xsd:string" />
         <xsd:element ref="launches"/>
-        <xsd:element ref="l:launchpads"/>
-        <xsd:element ref="c:customers"/>
-        <xsd:element ref="r:rockets" />
+        <xsd:element ref="launchpads"/>
+        <xsd:element ref="customers"/>
+        <xsd:element ref="rockets" />
         <xsd:element ref="payloads"/>
         <xsd:element ref="locations"/>
       </xsd:sequence>
     </xsd:complexType>
     <xsd:key name="customerID">
-      <xsd:selector xpath="c:customers/c:customer" />
+      <xsd:selector xpath="customers/customer" />
       <xsd:field xpath="@customer_id" />
     </xsd:key>
     <xsd:keyref name="customerIDREF" refer="customerID">
@@ -33,7 +33,7 @@
       <xsd:field xpath="@payload_ref" />
     </xsd:keyref>
     <xsd:key name="rocketID">
-      <xsd:selector xpath="r:rockets/r:rocket" />
+      <xsd:selector xpath="rockets/rocket" />
       <xsd:field xpath="@rocket_id" />
     </xsd:key>
     <xsd:keyref name="rocketIDREF" refer="rocketID">
@@ -41,7 +41,7 @@
       <xsd:field xpath="@rocket_ref" />
     </xsd:keyref>
     <xsd:key name="launchpadID">
-      <xsd:selector xpath="l:launchpads/l:launchpad" />
+      <xsd:selector xpath="launchpads/launchpad" />
       <xsd:field xpath="@launchpad_id" />
     </xsd:key>
     <xsd:keyref name="launchpadIDREF" refer="launchpadID">
@@ -53,11 +53,11 @@
       <xsd:field xpath="@location_id" />
     </xsd:key>
     <xsd:keyref name="customerlocationIDREF" refer="locationID">
-      <xsd:selector xpath="c:customers/c:customer/c:contact_info" />
+      <xsd:selector xpath="customers/customer/contact_info" />
       <xsd:field xpath="@location_ref" />
     </xsd:keyref>
     <xsd:keyref name="launchpadlocationIDREF" refer="locationID">
-      <xsd:selector xpath="l:launchpads/l:launchpad" />
+      <xsd:selector xpath="launchpads/launchpad" />
       <xsd:field xpath="@location_ref" />
     </xsd:keyref>
     <xsd:key name="launchID">
@@ -91,7 +91,7 @@
     <xsd:complexType>
       <xsd:sequence>
         <xsd:element name="launch_date" type="xsd:dateTime" />
-        <xsd:element ref="r:cost"/>
+        <xsd:element ref="cost"/>
       </xsd:sequence>
       <xsd:attributeGroup ref="launchattr" />
     </xsd:complexType>
@@ -107,7 +107,7 @@
     <xsd:complexType>
       <xsd:sequence>
         <xsd:element ref="payload_type"/>
-        <xsd:element ref="r:mass"/>
+        <xsd:element ref="mass"/>
       </xsd:sequence>
       <xsd:attribute name="payload_id" use="required" type="payload_pattern">
       </xsd:attribute>
@@ -133,17 +133,17 @@
     <xsd:complexType>
       <xsd:simpleContent>
         <xsd:extension base="xsd:string">
-          <xsd:attribute name="location_id" use="required" type="l:location_pattern"/>
+          <xsd:attribute name="location_id" use="required" type="location_pattern"/>
         </xsd:extension>
       </xsd:simpleContent>
     </xsd:complexType>
   </xsd:element>
   <xsd:attributeGroup name="launchattr">
     <xsd:attribute name="launch_id" use="required" type="launch_pattern" />
-    <xsd:attribute name="launchpad_ref" use="required" type="l:launchpad_pattern" />
-    <xsd:attribute name="customer_ref" use="required" type="c:customer_pattern" />
+    <xsd:attribute name="launchpad_ref" use="required" type="launchpad_pattern" />
+    <xsd:attribute name="customer_ref" use="required" type="customer_pattern" />
     <xsd:attribute name="payload_ref" use="required" type="payload_pattern" />
-    <xsd:attribute name="rocket_ref" use="required" type="r:rocket_pattern" />
+    <xsd:attribute name="rocket_ref" use="required" type="rocket_pattern" />
   </xsd:attributeGroup>
   <xsd:element name="capsule" type="xsd:string" />
   <xsd:element name="satellite" type="xsd:string" />
