@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+    <meta charset="UTF-8" />
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<div th:fragment="labelInputFragment(fieldId, field, fieldName)">
+    <div class="form-group row">
+        <label th:for="${fieldId}" class="text-left col-sm-3 col-form-label col-form-label-lg" th:text="${fieldName}"></label>
+        <div class="col-sm-9">
+            <input th:id="${fieldId}" th:name="${fieldId}" class="form-control form-control-lg" th:field="*{__${field}__}"/>
+        </div>
+    </div>
+    <p th:each="error: ${#fields.errors('__${fieldId}__')}"
+       th:text="${error}">Validation error</p>
+</div>
+<div th:fragment="calendarInputFragment(fieldId, field, fieldName)">
+    <div class="form-group row">
+        <label th:for="${fieldId}" class="text-left col-sm-3 col-form-label col-form-label-lg" th:text="${fieldName}"></label>
+        <div class="col-sm-9">
+            <!--Firefox doesnt support datetime as of v67-->
+            <input type="datetime-local" th:id="${fieldId}" th:name="${fieldId}" class="form-control form-control-lg" th:field="*{__${field}__}"/>
+        </div>
+    </div>
+    <p th:each="error: ${#fields.errors('__${fieldId}__')}"
+       th:text="${error}">Validation error</p>
+</div>
+<div th:fragment="comboboxInputFragment(fieldId, fields, fieldName)">
+    <div class="form-group row">
+        <label th:for="${fieldId}" class="text-left col-sm-3 col-form-label col-form-label-lg" th:text="${fieldName}"></label>
+        <div class="col-sm-9">
+            <select class="form-control form-control-lg" th:id="${fieldId}">
+                <option value="default" th:text="${fieldName}"></option>
+                <option th:each="field : *{__${fields}__}" th:value="${field}" th:text="${field}"></option>
+            </select>
+        </div>
+    </div>
+    <p th:each="error: ${#fields.errors('__${fieldId}__')}"
+       th:text="${error}">Validation error</p>
+</div>

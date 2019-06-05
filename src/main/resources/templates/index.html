@@ -2,10 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
     <title>PKCK - bindings</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/background.css}">
 </head>
 <body>
-    <label class="label label-primary" th:text="'Hello!'"></label>
+<div class="container center-block text-center">
+    <h1 class="label label-primary" th:text="'Plan lotów'"></h1>
+    <br>
+
+    <a class="btn btn-lg btn-primary btn-block" th:href="@{/launches}" th:text="Starty"></a>
+    <a class="btn btn-lg btn-primary btn-block" th:href="@{/launchpads}" th:text="'Stanowiska startowe'"></a>
+    <a class="btn btn-lg btn-primary btn-block" th:href="@{/customers}" th:text="Klienci"></a>
+    <a class="btn btn-lg btn-primary btn-block" th:href="@{/rockets}" th:text="Rakiety"></a>
+    <a class="btn btn-lg btn-primary btn-block" th:href="@{/payloads}" th:text="Ładunki"></a>
+    <a class="btn btn-lg btn-primary btn-block" th:href="@{/locations}" th:text="Lokacje"></a>
+
+    <br>
+    <label class="label" th:text="'Autorzy'"></label>
+    <br>
+    <label class="label" th:text="'Barłomiej Ciesielski'"></label>
+    <br>
+    <label class="label" th:text="'Michał Chmielewski'"></label>
+    <br>
+</div>
 </body>
 </html>
