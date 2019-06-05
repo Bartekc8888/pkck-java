@@ -47,7 +47,7 @@ public class Payload {
 
     @XmlElement(name = "payload_type", required = true)
     protected PayloadType payloadType;
-    @XmlElement(namespace = "http://example.com/rockets", required = true)
+    @XmlElement(required = true)
     protected Mass mass;
     @XmlAttribute(name = "payload_id", required = true)
     protected String payloadId;

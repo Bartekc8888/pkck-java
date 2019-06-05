@@ -5,5 +5,5 @@
 // Generated on: 2019.06.05 at 05:59:53 PM CEST 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://example.com/rockets", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@javax.xml.bind.annotation.XmlSchema(elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
 package com.politechnika.pkckbinding.dto.rockets;

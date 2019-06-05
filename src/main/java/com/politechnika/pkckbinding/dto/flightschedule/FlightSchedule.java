@@ -64,11 +64,11 @@ public class FlightSchedule {
     protected String description;
     @XmlElement(required = true)
     protected Launches launches;
-    @XmlElement(namespace = "http://example.com/launchpads", required = true)
+    @XmlElement(required = true)
     protected Launchpads launchpads;
-    @XmlElement(namespace = "http://example.com/customers", required = true)
+    @XmlElement(required = true)
     protected Customers customers;
-    @XmlElement(namespace = "http://example.com/rockets", required = true)
+    @XmlElement(required = true)
     protected Rockets rockets;
     @XmlElement(required = true)
     protected Payloads payloads;

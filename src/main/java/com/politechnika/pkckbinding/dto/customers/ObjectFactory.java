@@ -68,7 +68,7 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://example.com/customers", name = "phone_number")
+    @XmlElementDecl(name = "phone_number")
     public JAXBElement<String> createPhoneNumber(String value) {
         return new JAXBElement<String>(_PhoneNumber_QNAME, String.class, null, value);
     }

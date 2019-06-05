@@ -49,7 +49,7 @@ public class Launch {
     @XmlElement(name = "launch_date", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar launchDate;
-    @XmlElement(namespace = "http://example.com/rockets", required = true)
+    @XmlElement(required = true)
     protected Cost cost;
     @XmlAttribute(name = "launch_id", required = true)
     protected String launchId;
