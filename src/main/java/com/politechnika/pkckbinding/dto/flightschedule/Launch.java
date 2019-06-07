@@ -13,6 +13,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import lombok.Data;
 import com.politechnika.pkckbinding.dto.rockets.Cost;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 
 /**
@@ -48,6 +50,7 @@ public class Launch {
 
     @XmlElement(name = "launch_date", required = true)
     @XmlSchemaType(name = "dateTime")
+    @DateTimeFormat(iso = ISO.DATE_TIME)
     protected XMLGregorianCalendar launchDate;
     @XmlElement(required = true)
     protected Cost cost;

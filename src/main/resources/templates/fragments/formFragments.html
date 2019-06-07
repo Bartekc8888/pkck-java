@@ -19,7 +19,7 @@
         <label th:for="${fieldId}" class="text-left col-sm-3 col-form-label col-form-label-lg" th:text="${fieldName}"></label>
         <div class="col-sm-9">
             <!--Firefox doesnt support datetime as of v67-->
-            <input type="datetime-local" th:id="${fieldId}" th:name="${fieldId}" class="form-control form-control-lg" th:field="*{__${field}__}"/>
+            <input th:id="${fieldId}" th:name="${fieldId}" class="form-control form-control-lg" th:value="${localDateTime}"/>
         </div>
     </div>
     <p th:each="error: ${#fields.errors('__${fieldId}__')}"
@@ -37,14 +37,14 @@
     <p th:each="error: ${#fields.errors('__${fieldId}__')}"
        th:text="${error}">Validation error</p>
 </div>
-<div th:fragment="inputWithUnitFragment(fieldId, objectField, unitTemplateValues, fieldName)">
+<div th:fragment="inputWithUnitFragment(fieldId, objectField, typeField, unitTemplateValues, fieldName)">
     <div class="form-group row">
         <label th:for="${fieldId}" class="text-left col-sm-3 col-form-label col-form-label-lg" th:text="${fieldName}"></label>
         <div class="col-sm-6">
             <input th:id="${fieldId}" th:name="${fieldId}" class="form-control form-control-lg" th:field="*{__${objectField}__}"/>
         </div>
         <div class="col-sm-3">
-            <select class="form-control form-control-lg" th:field="*{__${objectField}__}" th:id="${fieldId}">
+            <select class="form-control form-control-lg" th:field="*{__${typeField}__}" th:id="${fieldId}">
                 <option th:each="field : ${unitTemplateValues}" th:value="${field}" th:text="${field}"></option>
             </select>
         </div>

@@ -11,7 +11,7 @@
     <h1 class="label label-primary" th:text="'Starty'"></h1>
     <form class="form-group" th:action="@{/launches}" th:object="${launch}" th:method="POST" th:enctype="utf8">
         <div th:replace="fragments/formFragments :: calendarInputFragment('launchDate', 'launchDate', 'Data startu')"></div>
-        <div th:replace="fragments/formFragments :: inputWithUnitFragment('cost', 'cost', ${creationDto.currencyTypes}, 'Koszt')"></div>
+        <div th:replace="fragments/formFragments :: inputWithUnitFragment('cost', 'cost.value', 'cost.currency', ${creationDto.currencyTypes}, 'Koszt')"></div>
         <div th:replace="fragments/formFragments :: comboboxInputFragment('launchpadRef', 'launchpadRef', ${creationDto.launchpadRef}, 'Platforma startowa')"></div>
         <div th:replace="fragments/formFragments :: comboboxInputFragment('customerRef', 'customerRef', ${creationDto.customerRef}, 'Klient')"></div>
         <div th:replace="fragments/formFragments :: comboboxInputFragment('payloadRef', 'payloadRef', ${creationDto.payloadRef}, 'Ładunek')"></div>
