@@ -13,6 +13,7 @@ import java.io.IOException;
 import com.politechnika.pkckbinding.dto.flightschedule.FlightSchedule;
 import com.politechnika.pkckbinding.exception.XmlLoadingException;
 import com.politechnika.pkckbinding.exception.XmlSavingException;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,9 +34,12 @@ public class XmlConverter {
 
     private final ResourceLoader resourceLoader;
 
+    @Getter
+    private FlightSchedule flightSchedule;
+
     @PostConstruct
     public void load() {
-        FlightSchedule flightSchedule = loadXmlFile();
+        flightSchedule = loadXmlFile();
         saveXmlFile(flightSchedule);
     }
 

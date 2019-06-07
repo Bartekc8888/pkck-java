@@ -11,11 +11,11 @@
     <h1 class="label label-primary" th:text="'Starty'"></h1>
     <form class="form-group" th:action="@{/launches}" th:object="${launch}" th:method="POST" th:enctype="utf8">
         <div th:replace="fragments/formFragments :: calendarInputFragment('launchDate', 'launchDate', 'Data startu')"></div>
-        <div th:replace="fragments/formFragments :: labelInputFragment('cost', 'cost', 'Koszt')"></div>
-        <div th:replace="fragments/formFragments :: comboboxInputFragment('launchpadRef', 'launchpadRef', 'Platforma startowa')"></div>
-        <div th:replace="fragments/formFragments :: labelInputFragment('customerRef', 'customerRef', 'Klient')"></div>
-        <div th:replace="fragments/formFragments :: labelInputFragment('payloadRef', 'payloadRef', 'Ładunek')"></div>
-        <div th:replace="fragments/formFragments :: labelInputFragment('rocketRef', 'rocketRef', 'Rakieta')"></div>
+        <div th:replace="fragments/formFragments :: inputWithUnitFragment('cost', 'cost', ${creationDto.currencyTypes}, 'Koszt')"></div>
+        <div th:replace="fragments/formFragments :: comboboxInputFragment('launchpadRef', 'launchpadRef', ${creationDto.launchpadRef}, 'Platforma startowa')"></div>
+        <div th:replace="fragments/formFragments :: comboboxInputFragment('customerRef', 'customerRef', ${creationDto.customerRef}, 'Klient')"></div>
+        <div th:replace="fragments/formFragments :: comboboxInputFragment('payloadRef', 'payloadRef', ${creationDto.payloadRef}, 'Ładunek')"></div>
+        <div th:replace="fragments/formFragments :: comboboxInputFragment('rocketRef', 'rocketRef', ${creationDto.rocketRef}, 'Rakieta')"></div>
 
         <p>
             <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="Zapisz"></button>

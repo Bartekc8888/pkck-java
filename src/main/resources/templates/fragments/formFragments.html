@@ -25,13 +25,27 @@
     <p th:each="error: ${#fields.errors('__${fieldId}__')}"
        th:text="${error}">Validation error</p>
 </div>
-<div th:fragment="comboboxInputFragment(fieldId, fields, fieldName)">
+<div th:fragment="comboboxInputFragment(fieldId, objectField, templateValues, fieldName)">
     <div class="form-group row">
         <label th:for="${fieldId}" class="text-left col-sm-3 col-form-label col-form-label-lg" th:text="${fieldName}"></label>
         <div class="col-sm-9">
-            <select class="form-control form-control-lg" th:id="${fieldId}">
-                <option value="default" th:text="${fieldName}"></option>
-                <option th:each="field : *{__${fields}__}" th:value="${field}" th:text="${field}"></option>
+            <select class="form-control form-control-lg" th:field="*{__${objectField}__}" th:id="${fieldId}">
+                <option th:each="field : ${templateValues}" th:value="${field}" th:text="${field}"></option>
+            </select>
+        </div>
+    </div>
+    <p th:each="error: ${#fields.errors('__${fieldId}__')}"
+       th:text="${error}">Validation error</p>
+</div>
+<div th:fragment="inputWithUnitFragment(fieldId, objectField, unitTemplateValues, fieldName)">
+    <div class="form-group row">
+        <label th:for="${fieldId}" class="text-left col-sm-3 col-form-label col-form-label-lg" th:text="${fieldName}"></label>
+        <div class="col-sm-6">
+            <input th:id="${fieldId}" th:name="${fieldId}" class="form-control form-control-lg" th:field="*{__${objectField}__}"/>
+        </div>
+        <div class="col-sm-3">
+            <select class="form-control form-control-lg" th:field="*{__${objectField}__}" th:id="${fieldId}">
+                <option th:each="field : ${unitTemplateValues}" th:value="${field}" th:text="${field}"></option>
             </select>
         </div>
     </div>
