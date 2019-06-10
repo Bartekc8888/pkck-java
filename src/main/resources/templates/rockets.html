@@ -11,9 +11,18 @@
     <h1 class="label label-primary" th:text="'Starty'"></h1>
     <br>
 
-    <a class="btn btn-lg btn-primary btn-block" th:href="@{/}" th:text="Wróć"></a>
+    <form class="form-group" th:action="@{/rockets}" th:object="${rocket}" th:method="POST" th:enctype="utf8">
+        <div th:replace="fragments/formFragments :: labelInputFragment('name', 'name', 'Nazwa')"></div>
+        <div th:replace="fragments/formFragments :: inputWithUnitFragment('mass', 'mass.value', 'mass.unit', ${creationDto.massTypes}, 'Masa')"></div>
+        <div th:replace="fragments/formFragments :: inputWithUnitFragment('thrust', 'thrust.value', 'thrust.unit', ${creationDto.forceUnitTypes}, 'Ciąg')"></div>
+        <div th:replace="fragments/formFragments :: inputWithUnitFragment('payloadCapacity', 'payloadCapacity.value', 'payloadCapacity.unit', ${creationDto.massTypes}, 'Pojemność')"></div>
+        <div th:replace="fragments/formFragments :: inputWithUnitFragment('cost', 'cost.value', 'cost.currency', ${creationDto.currencyTypes}, 'Koszt')"></div>
 
-    <h1 class="label label-primary" th:text="'Not implemented'"></h1>
+        <p>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="Zapisz"></button>
+        </p>
+        <a class="btn btn-lg btn-primary btn-block" th:href="@{/}" th:text="Wróć"></a>
+    </form>
 </div>
 </body>
 </html>

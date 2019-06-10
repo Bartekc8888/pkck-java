@@ -15,6 +15,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CreationDto implements Serializable {
     protected List<String> currencyTypes;
+    protected List<String> massTypes;
+    protected List<String> forceUnitTypes;
     protected List<String> launchpadRef;
     protected List<String> customerRef;
     protected List<String> payloadRef;

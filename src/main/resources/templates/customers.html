@@ -10,10 +10,16 @@
 <div class="container center-block text-center">
     <h1 class="label label-primary" th:text="'Starty'"></h1>
     <br>
+    <form class="form-group" th:action="@{/customers}" th:object="${customer}" th:method="POST" th:enctype="utf8">
+        <div th:replace="fragments/formFragments :: labelInputFragment('name', 'name', 'Nazwa')"></div>
+        <div th:replace="fragments/formFragments :: labelInputFragment('contactInfo.phoneNumber', 'contactInfo.phoneNumber', 'Numer telefonu')"></div>
+        <div th:replace="fragments/formFragments :: comboboxInputFragment('contactInfo.locationRef', 'contactInfo.locationRef', ${creationDto.locationRef}, 'Lokalizacja')"></div>
 
-    <a class="btn btn-lg btn-primary btn-block" th:href="@{/}" th:text="Wróć"></a>
-
-    <h1 class="label label-primary" th:text="'Not implemented'"></h1>
+        <p>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="Zapisz"></button>
+        </p>
+        <a class="btn btn-lg btn-primary btn-block" th:href="@{/}" th:text="Wróć"></a>
+    </form>
 </div>
 </body>
 </html>

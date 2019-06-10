@@ -11,9 +11,17 @@
     <h1 class="label label-primary" th:text="'Starty'"></h1>
     <br>
 
-    <a class="btn btn-lg btn-primary btn-block" th:href="@{/}" th:text="Wróć"></a>
+    <form class="form-group" th:action="@{/payloads}" th:object="${payload}" th:method="POST" th:enctype="utf8">
+        <div th:replace="fragments/formFragments :: inputWithUnitFragment('mass', 'mass.value', 'mass.unit', ${creationDto.massTypes}, 'Masa')"></div>
+        <div th:replace="fragments/formFragments :: labelInputFragment('payloadType.capsule', 'payloadType.capsule', 'Kapsuła')"></div>
+        <div th:replace="fragments/formFragments :: labelInputFragment('payloadType.satellite', 'payloadType.satellite', 'Satelita')"></div>
+        <div th:replace="fragments/formFragments :: labelInputFragment('payloadType.cargo', 'payloadType.cargo', 'Ładunek')"></div>
 
-    <h1 class="label label-primary" th:text="'Not implemented'"></h1>
+        <p>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="Zapisz"></button>
+        </p>
+        <a class="btn btn-lg btn-primary btn-block" th:href="@{/}" th:text="Wróć"></a>
+    </form>
 </div>
 </body>
 </html>

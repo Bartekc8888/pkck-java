@@ -14,6 +14,8 @@ import com.politechnika.pkckbinding.dto.flightschedule.Location;
 import com.politechnika.pkckbinding.dto.flightschedule.Payload;
 import com.politechnika.pkckbinding.dto.launchpads.Launchpad;
 import com.politechnika.pkckbinding.dto.rockets.CurrencyType;
+import com.politechnika.pkckbinding.dto.rockets.ForceUnitType;
+import com.politechnika.pkckbinding.dto.rockets.MassUnitType;
 import com.politechnika.pkckbinding.dto.rockets.Rocket;
 import com.politechnika.pkckbinding.tool.XmlConverter;
 import lombok.AllArgsConstructor;
@@ -27,6 +29,8 @@ public class ExistingIdsService {
     public CreationDto getCreationDto() {
         return CreationDto.builder()
                           .currencyTypes(getCurrencies())
+                          .massTypes(getMassTypes())
+                          .forceUnitTypes(getThrustTypes())
                           .customerRef(getCustomerIds())
                           .launchpadRef(getLaunchpadIds())
                           .payloadRef(getPayloadIds())
@@ -34,6 +38,16 @@ public class ExistingIdsService {
                           .launchRef(getLaunchIds())
                           .locationRef(getLocationIds())
                           .build();
+    }
+
+    private List<String> getThrustTypes() {
+        ArrayList<ForceUnitType> currencyTypes = new ArrayList<>(Arrays.asList(ForceUnitType.values()));
+        return currencyTypes.stream().map(Enum::toString).collect(Collectors.toList());
+    }
+
+    private List<String> getMassTypes() {
+        ArrayList<MassUnitType> currencyTypes = new ArrayList<>(Arrays.asList(MassUnitType.values()));
+        return currencyTypes.stream().map(Enum::toString).collect(Collectors.toList());
     }
 
     public List<String> getCurrencies() {
