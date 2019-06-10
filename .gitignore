@@ -30,3 +30,5 @@ HELP.md
 
 
 resultFile.xml
+auxiliaryResult.xml
+*.html

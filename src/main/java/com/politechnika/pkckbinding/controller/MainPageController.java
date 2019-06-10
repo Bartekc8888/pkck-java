@@ -12,11 +12,10 @@ import com.politechnika.pkckbinding.dto.flightschedule.Launch;
 import com.politechnika.pkckbinding.service.ExistingIdsService;
 import com.politechnika.pkckbinding.tool.XmlConverter;
 import lombok.AllArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @AllArgsConstructor
@@ -28,6 +27,27 @@ public class MainPageController {
     @GetMapping("/")
     public String mainPage() {
         return "index";
+    }
+
+
+    @PostMapping("/savexml")
+    public String saveXml() {
+        xmlConverter.saveXmlFile(xmlConverter.getFlightSchedule());
+
+        return "redirect:/";
+    }
+
+    @PostMapping("/loadxml")
+    public String loadXml() {
+        xmlConverter.setFlightSchedule(xmlConverter.loadXmlFile());
+
+        return "redirect:/";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/generateHtml", produces = MediaType.TEXT_HTML_VALUE)
+    @ResponseBody
+    public String generateHtml() {
+        return xmlConverter.generateHtml();
     }
 
     @ModelAttribute("localDateTime")

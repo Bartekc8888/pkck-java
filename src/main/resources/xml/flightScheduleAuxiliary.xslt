@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet version="2.0" encoding="utf-8" ?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:output method="xml" encoding="utf-8" />
 
@@ -111,13 +111,13 @@
     </xsl:variable>
     <xsl:variable name="exchange_rate">
     <xsl:if test="contains($currency,'EUR')">
-      <xsl:value-of select="number()">1.12</xsl:value-of>
+      <xsl:value-of>1.12</xsl:value-of>
     </xsl:if>
     <xsl:if test="contains($currency,'PLN')">
-      <xsl:value-of select="number()">0.26</xsl:value-of>
+      <xsl:value-of>0.26</xsl:value-of>
     </xsl:if>
     <xsl:if test="contains($currency,'USD')">
-      <xsl:value-of select="number()">1</xsl:value-of>
+      <xsl:value-of>1</xsl:value-of>
     </xsl:if>
     </xsl:variable>
     <xsl:variable name="costs">
