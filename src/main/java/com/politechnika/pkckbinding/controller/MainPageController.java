@@ -70,8 +70,7 @@ public class MainPageController {
 
     @PostMapping("/launches")
     public void saveLaunch(@ModelAttribute Launch launch) {
-        int size = existingIdsService.getLaunchIds().size();
-        String launchId = "lan_" + (size + 1);
+        String launchId = existingIdsService.generateId("lan_", existingIdsService.getLaunchIds());
         launch.setLaunchId(launchId);
         xmlConverter.getFlightSchedule().getLaunches().getLaunch().add(launch);
     }

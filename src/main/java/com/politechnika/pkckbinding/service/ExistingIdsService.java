@@ -3,6 +3,7 @@ package com.politechnika.pkckbinding.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import com.politechnika.pkckbinding.dto.CreationDto;
@@ -80,5 +81,17 @@ public class ExistingIdsService {
 
         List<Rocket> rockets = flightSchedule.getRockets().getRocket();
         return rockets.stream().map(Rocket::getRocketId).collect(Collectors.toList());
+    }
+
+    public String generateId(String baseId, List<String> allIds) {
+        Random generator = new Random();
+
+        int size = allIds.size();
+        String generatedId = baseId + (size + 1);
+        while (allIds.contains(generatedId)) {
+            generatedId = baseId + generator.nextInt();
+        }
+
+        return generatedId;
     }
 }
