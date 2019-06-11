@@ -48,7 +48,7 @@ import lombok.Data;
 public class ContactInfo {
 
     @XmlElement(name = "phone_number", required = true)
-    protected Object phoneNumber;
+    protected String phoneNumber;
     @XmlAttribute(name = "location_ref", required = true)
     protected String locationRef;
 }

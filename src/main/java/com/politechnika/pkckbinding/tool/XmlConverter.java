@@ -52,6 +52,7 @@ public class XmlConverter {
     @Getter
     @Setter
     private FlightSchedule flightSchedule;
+    private String xmlResultPath = "resultFile.xml";
 
     @PostConstruct
     public void load() {
@@ -84,7 +85,7 @@ public class XmlConverter {
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-            File xml = new File("resultFile.xml");
+            File xml = new File(xmlResultPath);
             if (!xml.exists()) {
                 xml.createNewFile();
             }
@@ -132,7 +133,8 @@ public class XmlConverter {
     }
 
     private void createAuxiliary() throws IOException, TransformerException {
-        doTransformation(loadFileFromResource(xmlFilePath), loadFileFromResource(auxiliaryXslPath), auxiliaryResult);
+        saveXmlFile(flightSchedule);
+        doTransformation(new File(xmlResultPath), loadFileFromResource(auxiliaryXslPath), auxiliaryResult);
     }
 
     private Schema loadSchema() throws SAXException, IOException {

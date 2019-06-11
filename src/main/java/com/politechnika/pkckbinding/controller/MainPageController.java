@@ -13,6 +13,9 @@ import com.politechnika.pkckbinding.dto.flightschedule.Location;
 import com.politechnika.pkckbinding.dto.flightschedule.Payload;
 import com.politechnika.pkckbinding.dto.launchpads.Launchpad;
 import com.politechnika.pkckbinding.dto.rockets.Rocket;
+import com.politechnika.pkckbinding.exception.HtmlGenerationException;
+import com.politechnika.pkckbinding.exception.XmlLoadingException;
+import com.politechnika.pkckbinding.exception.XmlSavingException;
 import com.politechnika.pkckbinding.service.ExistingIdsService;
 import com.politechnika.pkckbinding.tool.XmlConverter;
 import lombok.AllArgsConstructor;
@@ -145,5 +148,15 @@ public class MainPageController {
         String locationId = existingIdsService.generateId("loc_", existingIdsService.getLocationIds());
         location.setLocationId(locationId);
         xmlConverter.getFlightSchedule().getLocations().getLocation().add(location);
+    }
+
+    @ExceptionHandler({XmlSavingException.class, HtmlGenerationException.class})
+    public String savingErrorPage() {
+        return "savingError";
+    }
+
+    @ExceptionHandler({XmlLoadingException.class})
+    public String loadingErrorPage() {
+        return "loadingError";
     }
 }

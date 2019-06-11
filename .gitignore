@@ -29,6 +29,6 @@ HELP.md
 .vscode/
 
 
-resultFile.xml
-auxiliaryResult.xml
-*.html
+/resultFile.xml
+/auxiliaryResult.xml
+/*.html

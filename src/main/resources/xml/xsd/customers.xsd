@@ -19,18 +19,16 @@
   <xsd:element name="contact_info">
     <xsd:complexType>
       <xsd:sequence>
-        <xsd:element name="phone_number"/>
+        <xsd:element name="phone_number" type="phone_number"/>
       </xsd:sequence>
       <xsd:attribute name="location_ref" use="required" type="location_pattern"/>
     </xsd:complexType>
   </xsd:element>
-  <xsd:element name="phone_number">
-    <xsd:simpleType>
+  <xsd:simpleType name="phone_number">
       <xsd:restriction base="xsd:string">
         <xsd:pattern value="\d{3}-\d{3}-\d{3}" />
       </xsd:restriction>
-    </xsd:simpleType>
-  </xsd:element>
+  </xsd:simpleType>
   <xsd:group name="customer_group">
     <xsd:sequence>
       <xsd:element name="name" type="xsd:string" />
