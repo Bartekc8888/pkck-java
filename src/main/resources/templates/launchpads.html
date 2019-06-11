@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
-    <title>PKCK - launches</title>
+    <title>PKCK - Stanowiska startowe</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/background.css}">
 </head>
 <body>
 <div class="container center-block text-center">
-    <h1 class="label label-primary" th:text="'Starty'"></h1>
+    <h1 class="label label-primary" th:text="'Stanowiska startowe'"></h1>
     <br>
 
     <form class="form-group" th:action="@{/launchpads}" th:object="${launchpad}" th:method="POST" th:enctype="utf8">
